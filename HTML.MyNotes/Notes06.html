@@ -1,0 +1,57 @@
+﻿
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <title></title>
+
+    <script type="text/javascript">
+        var id = "";
+        hover = "";
+
+        function hareket(e) {
+            id = e.target.id;
+        }
+        function gel(e) {
+            e.preventDefault(); /*Objenin diğer işlevlerini kapatıyor.*/
+            hover = e.target.id;
+            $(".cember").css("opacity", ".3");
+        }
+        function git() {
+            $(".cember").css("opacity", "1");
+        }
+        function birak(e) {
+            $("#" + id).remove();
+            $("#" + hover).html('<div class="daire" ></div>');
+            $(".cember").css("opacity", "1");
+        }
+    </script>
+
+    <style type="text/css">
+        .daire {
+            width: 100px;
+            height: 100px;
+            background: #fc584b;
+            border-radius: 50px;
+        }
+
+        .cember {
+            width: 100px;
+            height: 100px;
+            padding: 3px;
+            border: 2px solid #fc584b;
+            border-radius: 60px;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>DRAG & DROP (HTML5) Sample</h2>
+        <div class="cember" id="cember" ondrop="birak(event)" ondragover="gel(event)" ondragleave="git()"></div>
+
+        <div class="daire" id="daire" draggable="true" ondragstart="hareket(event)"></div>
+    </div>
+</body>
+</html>
